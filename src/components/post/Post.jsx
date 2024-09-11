@@ -19,7 +19,7 @@ const Post = ({ post }) => {
 
   const { currentUser } = useContext(AuthContext);
 
-  const { isLoading, error, data } = useQuery(["likes", post.id], () =>
+  const { isLoading, data } = useQuery(["likes", post.id], () =>
     makeRequest.get("/likes?postId=" + post.id).then((res) => {
       return res.data;
     })
@@ -81,7 +81,7 @@ const Post = ({ post }) => {
           )}
         </div>
         <div className="content">
-          <p>{post.desc}</p>
+          <p>{post.descr}</p>
           <img src={"/upload/" + post.img} alt="" />
         </div>
         <div className="info">

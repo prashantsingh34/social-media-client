@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 const Share = () => {
   const [file, setFile] = useState(null);
-  const [desc, setDesc] = useState("");
+  const [descr, setDescr] = useState("");
 
   const upload = async () => {
     try {
@@ -41,8 +41,8 @@ const Share = () => {
     e.preventDefault();
     let imgUrl = "";
     if (file) imgUrl = await upload();
-    mutation.mutate({ desc, img: imgUrl });
-    setDesc("");
+    mutation.mutate({ descr, img: imgUrl });
+    setDescr("");
     setFile(null);
   };
 
@@ -55,8 +55,8 @@ const Share = () => {
             <input
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}
-              onChange={(e) => setDesc(e.target.value)}
-              value={desc}
+              onChange={(e) => setDescr(e.target.value)}
+              value={descr}
             />
           </div>
           <div className="right">

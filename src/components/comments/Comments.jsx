@@ -6,7 +6,7 @@ import { makeRequest } from "../../axios";
 import moment from "moment";
 
 const Comments = ({ postId }) => {
-  const [desc, setDesc] = useState("");
+  const [descr, setDesc] = useState("");
   const { currentUser } = useContext(AuthContext);
 
   const { isLoading, error, data } = useQuery(["comments"], () =>
@@ -31,7 +31,7 @@ const Comments = ({ postId }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    mutation.mutate({ desc, postId });
+    mutation.mutate({ descr, postId });
     setDesc("");
   };
 
@@ -42,7 +42,7 @@ const Comments = ({ postId }) => {
         <input
           type="text"
           placeholder="write a comment"
-          value={desc}
+          value={descr}
           onChange={(e) => setDesc(e.target.value)}
         />
         <button onClick={handleClick}>Send</button>
@@ -56,7 +56,7 @@ const Comments = ({ postId }) => {
               <img src={"/upload/" + comment.profilePic} alt="" />
               <div className="info">
                 <span>{comment.name}</span>
-                <p>{comment.desc}</p>
+                <p>{comment.descr}</p>
               </div>
               <span className="date">
                 {moment(comment.createdAt).fromNow()}

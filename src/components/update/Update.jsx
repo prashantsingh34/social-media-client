@@ -14,7 +14,6 @@ const Update = ({ setOpenUpdate, user }) => {
     city: user.city,
     website: user.website,
   });
-
   const upload = async (file) => {
     console.log(file)
     try {
@@ -47,9 +46,8 @@ const Update = ({ setOpenUpdate, user }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-
     //TODO: find a better way to get image URL
-    
+
     let coverUrl;
     let profileUrl;
     coverUrl = cover ? await upload(cover) : user.coverPic;
@@ -59,7 +57,8 @@ const Update = ({ setOpenUpdate, user }) => {
     setOpenUpdate(false);
     setCover(null);
     setProfile(null);
-
+    
+  }
   return (
     <div className="update">
       <div className="wrapper">
@@ -151,5 +150,4 @@ const Update = ({ setOpenUpdate, user }) => {
     </div>
   );
 };
-}
 export default Update

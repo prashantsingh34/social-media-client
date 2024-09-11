@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.scss";
-import axios from "axios";
+import { makeRequest } from "../../axios";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -11,7 +11,7 @@ const Register = () => {
     name: "",
   });
   const [err, setErr] = useState(null);
-
+  const [update, setUpdate] =useState(null);
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -20,7 +20,10 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8800/api/auth/register", inputs);
+      await makeRequest.post("/auth/register", inputs);
+      if(inputs){
+        setUpdate("User Profile added successfully");
+      }
     } catch (err) {
       setErr(err.response.data);
     }
@@ -71,6 +74,7 @@ const Register = () => {
               onChange={handleChange}
             />
             {err && err}
+            <span>{(update && !err) ? update : ""}</span>
             <button onClick={handleClick}>Register</button>
           </form>
         </div>
