@@ -15,16 +15,20 @@ const Register = () => {
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
+  
   const handleClick = async (e) => {
     e.preventDefault();
-
+    console.log("Register button clicked")
     try {
+      console.log("Trying to hit /api/register api",inputs)
       await makeRequest.post("/auth/register", inputs);
+      console.log(" /api/register api hit successful")
       if(inputs){
+        console.log("Profile added successfully")
         setUpdate("User Profile added successfully");
       }
     } catch (err) {
+      console.log("Error occured")
       setErr(err.response.data);
     }
   };
